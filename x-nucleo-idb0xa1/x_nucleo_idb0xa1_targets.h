@@ -43,11 +43,19 @@
  
 /*** SPI ***/
 /* Use Arduino I2C Connectors */
+#ifdef SENSOR_TILE
+#define IDB0XA1_PIN_SPI_MOSI   (PA_7) //(D11)	by FABIO for SensorTile
+#define IDB0XA1_PIN_SPI_MISO   (PA_6) //(D12)
+#define IDB0XA1_PIN_SPI_nCS    (PB_2) //(A1)
+#define IDB0XA1_PIN_SPI_RESET  (PH_0) //(D7)
+#define IDB0XA1_PIN_SPI_IRQ    (PC_5) //(A0)
+#else
 #define IDB0XA1_PIN_SPI_MOSI   (D11)
 #define IDB0XA1_PIN_SPI_MISO   (D12)
 #define IDB0XA1_PIN_SPI_nCS    (A1)
 #define IDB0XA1_PIN_SPI_RESET  (D7)
 #define IDB0XA1_PIN_SPI_IRQ    (A0)
+#endif
 
 /* NOTE: Define macro 'IDB0XA1_D13_PATCH' if you want to compile for a specifically
          modified version of the X_NUCLEO_IDB0XA1 expansion board in
@@ -61,6 +69,11 @@
 #else // !defined(IDB0XA1_D13_PATCH)
 #define IDB0XA1_PIN_SPI_SCK    (D3)
 #endif // !defined(IDB0XA1_D13_PATCH)
+
+#ifdef SENSOR_TILE
+#undef IDB0XA1_PIN_SPI_SCK
+#define IDB0XA1_PIN_SPI_SCK    (PA_5)
+#endif
 
 /* NOTE: Stack Mode 0x04 allows Simultaneous Scanning and Advertisement (SSAdv)
          Define macro 'SSADV' to enable it
