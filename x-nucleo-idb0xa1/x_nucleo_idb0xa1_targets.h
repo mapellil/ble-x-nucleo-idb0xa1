@@ -43,6 +43,10 @@
  
 /*** SPI ***/
 /* Use Arduino I2C Connectors */
+#ifndef SENSOR_TILE
+#define SENSOR_TILE
+#endif
+
 #ifdef SENSOR_TILE
 #define IDB0XA1_PIN_SPI_MOSI   (PA_7) //(D11)	by FABIO for SensorTile
 #define IDB0XA1_PIN_SPI_MISO   (PA_6) //(D12)
@@ -78,7 +82,7 @@
 /* NOTE: Stack Mode 0x04 allows Simultaneous Scanning and Advertisement (SSAdv)
          Define macro 'SSADV' to enable it
 */
-#define SSADV
+//#define SSADV
 #if defined(SSADV)
 #define IDB0XA1_STACK_MODE (0x04)
 #else
